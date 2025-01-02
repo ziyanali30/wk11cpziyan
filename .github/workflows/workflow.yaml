@@ -18,10 +18,13 @@ jobs:
         run : |
               git branch workflowbranch
               git switch workflowbranch
+              git push origin workflowbranch
       - name:  list-develop
         run : |
               git fetch origin develop
               echo "Listing files in develop branch"
               git ls-tree --name-only origin/develop
-        
+      - name: git-version
+        run : |
+              git --version  
 
