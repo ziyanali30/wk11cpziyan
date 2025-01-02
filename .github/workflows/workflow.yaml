@@ -1,0 +1,27 @@
+name: checkout-workflow
+
+on:
+  push:
+    branches:
+      - develop 
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  checkout-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+      - name: create branch
+        run : |
+              git branch workflowbranch
+              git switch workflowbranch
+      - name:  list-develop
+        run : |
+              git fetch origin develop
+              echo "Listing files in develop branch"
+              git ls-tree --name-only origin/develop
+        
+
